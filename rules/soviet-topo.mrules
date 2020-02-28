@@ -27,6 +27,8 @@ features
 
 	areas
 		building : building=yes
+		forest : landuse=forest OR natural=wood OR leisure=park
+		cemetery : landuse=cemetery
 		residential : landuse=residential
 		water : natural=water OR waterway=riverbank OR landuse=reservoir OR landuse=basin or waterway=dock
 
@@ -115,3 +117,44 @@ rules
 				line-style : dashdotdot
 				line-width : 2
 		draw : line
+
+	target : $featuretype(area)
+		define
+			line-style : none
+			line-width : 1
+		if : forest
+			define
+				min-zoom : 9
+				fill-color : #8DC56C white 60%
+				//fill-texture : Textures/ForestNoiseLight.jpg
+				line-width : 1
+				line-style : dot
+				line-color : #222222
+		elseif : cemetery
+			define
+				line-width : 1
+				line-style : solid
+				line-color : #336633
+				//fill-texture : Textures/cemetery.png
+		elseif : water
+			define
+				line-style : solid
+				line-color : #003399
+				fill-color : #99bbcc white 10%
+		elseif : residential
+			define
+				fill-color : #DCDCDC white 30%
+		else
+			stop
+		draw : fill
+		define
+			min-zoom : 17
+		draw : text
+
+	target : water
+		define
+			min-zoom : 15
+			font-size : 15:10;17:17
+			font-style : italic
+			text-color : #78C1C1 black 10%
+		draw : text
