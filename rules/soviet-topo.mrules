@@ -62,7 +62,7 @@ rules
 	target: contour*
 		define
 			line-color : #773300
-			line-opacity : 0.35
+			line-opacity : 0.5
 			curved : true
 		if : *major
 			define
@@ -73,9 +73,10 @@ rules
 				font-size : 10
 				font-weight : normal
 				text-color : #773300
-				//text-halo-width : 35%
-				//text-halo-opacity : 0.1
-				//text-halo-color : #F1EEE8
+				text-opacity : 0.5
+				text-halo-width : 2%
+				text-halo-opacity : 10%
+				text-halo-color : white
 		else
 			define
 				min-zoom : 12
@@ -101,8 +102,8 @@ rules
 			text-color : black
 			text-max-width : 15
 			text-offset-vertical : 50%
-			//text-halo-width : 0%
-			//text-halo-opacity : 0.75
+			text-halo-width : 1%
+			text-halo-opacity : 0.75
 		draw : text
 
 	target : boundary*
