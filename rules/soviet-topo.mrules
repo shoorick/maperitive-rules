@@ -106,11 +106,12 @@ rules
 	target : boundary*
 		define
 			line-color : #000000
-			line-style : dash
 		if : boundary country
 			define
-				line-width : 1
+				line-style : dashdot
+				line-width : 3
 		elseif : boundary region
 			define
-				line-width : 0.5
+				line-style : dashdotdot
+				line-width : 2
 		draw : line
