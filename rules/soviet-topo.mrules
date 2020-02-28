@@ -125,11 +125,10 @@ rules
 		if : forest
 			define
 				min-zoom : 9
-				fill-color : #8DC56C white 60%
-				//fill-texture : Textures/ForestNoiseLight.jpg
-				line-width : 1
-				line-style : dot
-				line-color : #222222
+				fill-color : #99cc99
+				//line-width : 9:0.1;12:0.1;12.1:1
+				//line-style : dot
+				//line-color : #222222
 		elseif : cemetery
 			define
 				line-width : 1
@@ -139,11 +138,11 @@ rules
 		elseif : water
 			define
 				line-style : solid
-				line-color : #003399
-				fill-color : #99bbcc white 10%
+				line-color : #004D99
+				fill-color : #95D0EE
 		elseif : residential
 			define
-				fill-color : #DCDCDC white 30%
+				fill-color : #ffddaa
 		else
 			stop
 		draw : fill
