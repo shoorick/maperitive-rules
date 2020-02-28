@@ -67,6 +67,7 @@ rules
 				map.rendering.contour.label : true
 				min-zoom : 9
 				line-width : 11:0.1;11.9:1;12:2
+				font-family : Roboto Condensed
 				font-size : 10
 				font-weight : normal
 				text-color : #773300
