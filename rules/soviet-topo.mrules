@@ -80,6 +80,29 @@ rules
 				line-width : 1
 		draw : contour
 
+	target : peak
+		define
+			fill-color : black
+			line-style : none
+			min-zoom : 11
+			shape : circle
+			shape-size : 11:3;15:8
+		draw : shape
+		define
+			font-family : Cambria
+			font-style : italic
+			font-weight : bold
+			font-size : 13:10;15:20
+			min-zoom : 13
+			text : @if(name, name @if(ele, "\n(" ele ")"), ele)
+			text-align-vertical : near
+			text-color : black
+			text-max-width : 15
+			text-offset-vertical : 50%
+			text-halo-width : 30%
+			text-halo-opacity : 0.75
+		draw : text
+
 	target : boundary*
 		define
 			line-color : #000000
