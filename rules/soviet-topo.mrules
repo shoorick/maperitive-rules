@@ -1,0 +1,92 @@
+// rendering rules for Maperitive
+// http://maperitive.net
+
+// Style of Soviet topographic maps
+// Created by Alexander Sapozhnikov http://shoorick.ru
+// Based on Hiking style by Igor Brejc
+// Released under the Creative Commons Attribution-ShareAlike 3.0 License
+// (http://creativecommons.org/licenses/by-sa/3.0/)
+
+features
+	// icons
+	church : amenity=place_of_worship AND (religion=christian OR religion=Christian)
+
+	points
+		peak : natural=peak
+
+	lines
+		contour major : contour[@isMulti(elevation, 50)]
+		contour minor : contour[@isMulti(elevation, 10) and not @isMulti(elevation, 50)]
+
+		road major : highway=motorway OR highway=trunk OR highway=trunk_link OR highway=primary OR highway=primary_link OR highway=secondary OR highway=secondary_link OR highway=tertiary OR highway=tertiary_link
+		road minor : highway=residential OR highway=unclassified
+		railway : railway=rail
+
+		boundary country   : relation[type=boundary AND boundary=administrative AND admin_level=2]
+		boundary region    : relation[type=boundary AND boundary=administrative AND admin_level=4]
+
+	areas
+		building : building=yes
+		residential : landuse=residential
+		water : natural=water OR waterway=riverbank OR landuse=reservoir OR landuse=basin or waterway=dock
+
+properties
+	map-background-color	: #ffffff
+	map-background-opacity	: 1
+	map-sea-color : #aaccff
+	map.rendering.lflp.min-buffer-space : 5
+	map.rendering.lflp.max-allowed-corner-angle : 40
+
+rules
+	target : road*
+		if : road major
+			define
+				line-color : #ff9900
+				line-width : 2
+				border-width : 10%
+				border-color : #000000
+				border-style : solid
+		elseif : road minor
+			define
+				line-color : #cc6600
+				line-width : 1
+		draw : line
+
+	target : railway
+		define
+			line-width : 9:1;10:2;13:2;14:3
+		draw : line
+
+	target: contour*
+		define
+			line-color : #773300
+			line-opacity : 0.35
+			curved : true
+		if : *major
+			define
+				map.rendering.contour.label : true
+				min-zoom : 9
+				line-width : 11:0.1;11.9:1;12:2
+				font-size : 10
+				font-weight : normal
+				text-color : #773300
+				//text-halo-width : 35%
+				//text-halo-opacity : 0.1
+				//text-halo-color : #F1EEE8
+		else
+			define
+				min-zoom : 12
+				line-width : 1
+		draw : contour
+
+	target : boundary*
+		define
+			line-color : #000000
+			line-style : dash
+		if : boundary country
+			define
+				line-width : 1
+		elseif : boundary region
+			define
+				line-width : 0.5
+		draw : line
